@@ -1,0 +1,34 @@
+{
+  "notes": [
+    {
+      "title": "roshan",
+      "detail": "garg",
+      "category": "money",
+      "id": 1
+    },
+    {
+      "title": "Ujjwal pandey ",
+      "detail": "Full Stack developer",
+      "category": "submitted",
+      "id": 4
+    },
+    {
+      "title": "Sonali ",
+      "detail": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi non quis exercitationem culpa nesciunt nihil aut nostrum explicabo reprehenderit optio amet ab temporibus asperiores quasi cupiditate. Voluptatum ducimus voluptates voluptas?",
+      "category": "last due",
+      "id": 5
+    },
+    {
+      "title": "Rahul ",
+      "detail": "lorem is not just a normal snippet—it’s actually a generator. Every time you expand it, it will generate a 30-words dummy text, splitted into a few sentences.\n\nYou can specify how many words should be generated right in the abbreviation. For example, lorem100 will generate a 100-words dummy text.",
+      "category": "Remainder",
+      "id": 6
+    },
+    {
+      "title": "prashant",
+      "detail": "Existing solutions like React wrapped DeSandro Masonry, while popular, don't actually leverage React's highly optimized Virtual DOM renderer and in DeSandro Masonry's case, actually renders elements twice before showing the layout. All of this is ok but we found it to lead to a slow, \"laggy\" user experience that would occasionally miss-render our layout.",
+      "category": "submitted",
+      "id": 7
+    }
+  ]
+}
