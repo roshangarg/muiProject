@@ -112,7 +112,7 @@ const Layout = ({ children }) => {
       <div className={classes.page}>
         <div className={classes.toolbar}></div>
           {children}
-        </div>
+      </div>
     </div>
   );
 };

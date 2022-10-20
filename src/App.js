@@ -27,6 +27,8 @@ const theme = createTheme({
 
 function App() {
   return (
+    <div className='App'>
+
     <ThemeProvider theme={theme}>
     <Router>
       <Layout>
@@ -41,6 +43,8 @@ function App() {
       </Layout>
     </Router>
     </ThemeProvider>
+
+    </div>
   );
 }
 
