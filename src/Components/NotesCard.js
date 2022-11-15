@@ -7,50 +7,94 @@ import Avatar from '@material-ui/core/Avatar';
 import { makeStyles } from "@material-ui/core";
 import { blue, green, yellow } from "@material-ui/core/colors";
 import { pink, red } from "@mui/material/colors";
+import { db } from '../FirebaseConfig'
+import { useEffect } from "react";
+import { useState } from "react";
+import { collection, deleteDoc, doc, onSnapshot } from "firebase/firestore";
+import Grid from "@material-ui/core/Grid";
+import Masonry from "react-masonry-css";
+
+import { Container } from "@material-ui/core";
+import { async } from "@firebase/util";
+
 const useStyles=makeStyles({
   avatar:{
-    backgroundColor:(notes)=>{
-      if(notes.category=="money"){
+    backgroundColor:(card)=>{
+      if(card.category=="money"){
         return green[700]
       }
-      if(notes.category=="last due"){
+      if(card.category=="last due"){
         return red[500]
       }
-      if(notes.category=="submitted"){
+      if(card.category=="submitted"){
         return blue[500]
       }
       return pink[500]
     }
   }
 })
-const NoteCard = ({ notes , handleDelete}) => {
-  const classes = useStyles(notes)
+
+const NoteCard = () => {
+  const breakpoints = {
+        default:3,
+        1100:2,
+        700:1,
+      }
+  const [card , setCard] = useState([])
+  useEffect(() => {
+   const unsub= onSnapshot(collection(db,'Notes'), (snapshot) => {
+     setCard(snapshot.docs.map(doc => ({...doc.data(), id:doc.id})))
+
+    })
+  
+    return () => {
+      unsub();
+    }
+  }, [])
+  const handleDelete = async(id) => {
+    await deleteDoc(doc(db,"Notes",id))
+  }
+  const classes = useStyles(card)
+  
   return (
-    <div>
-      <Card elevation={1}>
+ <div>
+  <Container>
+    <Masonry
+        breakpointCols={breakpoints}
+        className="my-masonry-grid"
+        columnClassName="my-masonry-grid_column"
+      >
+      {card.map((card) => (
+        <Card key={card.id} elevation={1}>
         <CardHeader
         avatar={
           <Avatar className={classes.avatar}>
             {
-              notes.category[0].toUpperCase()
+              card.category[0].toUpperCase()
             }
+            
+
           </Avatar>
         }
           action={
-            <IconButton onClick={() => handleDelete(notes.id)} >
+            <IconButton onClick={() => handleDelete(card.id)} >
               <DeleteOutlined/>
             </IconButton>
           }
-          title= {notes.title}
-          subheader={notes.category}
+          title= {card.title}
+          subheader={card.category}
         />
         <CardContent>
             <Typography variant="body2" color="textSecondary">
-                {notes.detail}
+                {card.detail}
             </Typography>
         </CardContent>
        
       </Card>
+      ))
+    }
+       </Masonry>
+       </Container>
     </div>
   );
 };

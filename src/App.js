@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import Notes from './pages/Notes'
+// import Notes from './pages/Notes'
+import NoteCard from './Components/NotesCard';
 import Create from './pages/Create'
 import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 import { purple } from '@material-ui/core/colors';
@@ -34,7 +35,7 @@ function App() {
       <Layout>
           <Switch>
                 <Route exact path="/">
-                  <Notes />
+                  <NoteCard />
                 </Route>
                 <Route path="/create">
                   <Create />

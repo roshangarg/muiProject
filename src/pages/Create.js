@@ -7,6 +7,8 @@ import { FormControlLabel, FormLabel, makeStyles } from "@material-ui/core";
 import TextField from '@material-ui/core/TextField';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
+import { addDoc, collection, doc } from "firebase/firestore"; 
+import { db } from '../FirebaseConfig'
 
 
 import FormControl from '@material-ui/core/FormControl'
@@ -27,11 +29,12 @@ const Create = () => {
   const classes = useStyles();
   const [title,setTitle] = useState('')
   const [detail,setDetail]= useState('')
+  const [error , setError] = useState(false)
   const [titleError,setTitleError] = useState(false)
   const [detailError,setDetailError]= useState(false)
   const [category ,setCategory] = useState('money')
   const history = useHistory()
-  const handleSubmit =(e)=>{
+  const handleSubmit = async(e)=>{
     e.preventDefault()
     setTitleError(false)
     setDetailError(false)
@@ -42,15 +45,26 @@ const Create = () => {
       setDetailError(true)
     }
     if(title && detail){
-    fetch('http://localhost:7000/notes',{
-      method:'POST',
-      headers:{"Content-type":"application/json"},
-      body:JSON.stringify({title,detail,category})
-    }).then(()=> history.push('/'))
+      try{
+        const collectionRef = collection(db,"Notes")
+        const payload = {
+          title,
+          detail,
+          category
+        }
+        await addDoc(collectionRef, payload)
+        .then(()=> history.push('/'))
+      }
+      
+      catch(err){
+        setError(true)
+        console.log(err)
+      }
     }
   }
   return (
     <Container>
+      {error && <span> something went wrong</span>}
       <Typography variant="h6" component="h2" color="secondary">
         Create a new Note
       </Typography>
@@ -74,7 +88,7 @@ const Create = () => {
         variant="outlined"
         color="secondary"
         multiline
-        rows={4}
+        minRows={4}
         required
         fullWidth
         error={detailError}
