@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/muiProject/static/css/main.9002f54b.chunk.css",
+    "main.js": "/muiProject/static/js/main.d8e1152e.chunk.js",
+    "main.js.map": "/muiProject/static/js/main.d8e1152e.chunk.js.map",
+    "runtime-main.js": "/muiProject/static/js/runtime-main.f02f491a.js",
+    "runtime-main.js.map": "/muiProject/static/js/runtime-main.f02f491a.js.map",
+    "static/js/2.a0458a94.chunk.js": "/muiProject/static/js/2.a0458a94.chunk.js",
+    "static/js/2.a0458a94.chunk.js.map": "/muiProject/static/js/2.a0458a94.chunk.js.map",
+    "index.html": "/muiProject/index.html",
+    "static/css/main.9002f54b.chunk.css.map": "/muiProject/static/css/main.9002f54b.chunk.css.map",
+    "static/js/2.a0458a94.chunk.js.LICENSE.txt": "/muiProject/static/js/2.a0458a94.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.f02f491a.js",
+    "static/js/2.a0458a94.chunk.js",
+    "static/css/main.9002f54b.chunk.css",
+    "static/js/main.d8e1152e.chunk.js"
+  ]
+}
